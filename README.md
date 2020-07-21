@@ -1,1 +1,2 @@
-# linux
+- ks.cfg定制ISO一键安装
+- nginx扩展用法
