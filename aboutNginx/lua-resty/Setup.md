@@ -67,11 +67,11 @@ cp cjson.so /usr/local/nginx/conf/cpath
 ```
 
 - 配置nginx.conf
-> lua_shared_dict shared_data 10m;
-> lua_package_path "/usr/local/nginx/conf/lua-resty-kafka/lib/?.lua;/usr/local/nginx/conf/lua-resty-redis/lib/?.lua;;";
+> lua_shared_dict shared_data 10m;  
+> lua_package_path "/usr/local/nginx/conf/lua-resty-kafka/lib/?.lua;/usr/local/nginx/conf/lua-resty-redis/lib/?.lua;;";  
 > lua_package_cpath "/usr/local/nginx/conf/cpath/?.so;;";
 
 - 配置nginx.conf 添加脚本路径
-> lua_code_cache off;    //调试打开
-> log_by_lua_file /usr/local/nginx/conf/lua/log2kafka.lua;
+> lua_code_cache off;    //调试打开  
+> log_by_lua_file /usr/local/nginx/conf/lua/log2kafka.lua;  
 > access_by_lua_file /usr/local/nginx/conf/lua/access_limit.lua;
