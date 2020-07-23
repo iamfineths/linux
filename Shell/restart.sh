@@ -55,7 +55,7 @@ start(){
 
     }
 
-    cd ${APPS_HOME}/${APPS}/WEB-INF/classes || cd ${APPS_HOME}/${APPS}/BOOT-INF/classes
+    cd ${APPS_HOME}/${APPS}/WEB-INF/classes &>/dev/null || cd ${APPS_HOME}/${APPS}/BOOT-INF/classes &>/dev/null
     local ___=$(dirname `pwd`)
 
     local CLASSPATH=
