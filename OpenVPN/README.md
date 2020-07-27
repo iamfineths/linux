@@ -1,6 +1,6 @@
 
 
-#### OpenVPN结合FreeOTP和密码做双因子认证
+### OpenVPN结合FreeOTP和密码做双因子认证
 
 ---
 
@@ -97,7 +97,7 @@
   /sbin/iptables -A INPUT -p tcp -s 10.100.0.0/24 -m comment --comment "打开 OpenVPN 网段" -j ACCEPT
   ```
 
-#### 访问控制
+### 访问控制
 ---
 
 - /etc/openvpn/ccd/handl 以用户名作为文件名生成以下文件
@@ -182,7 +182,7 @@ ifconfig-push 10.100.0.65 10.100.0.66
 /sbin/iptables -A FORWARD -i tun0 -m iprange --src-range 10.100.0.65-10.100.0.66 -d 10.108.0.0/24 -m comment --comment "禁止开发访问iDRAC远程卡" -j DROP
 ```
 
-#### FreeOTP与密码相结合
+### FreeOTP与密码相结合
 ---
 
 - 生成授权脚本路径：/etc/openvpn/openvpn-auth-script/auth.py
