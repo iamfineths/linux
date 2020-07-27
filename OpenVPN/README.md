@@ -98,6 +98,7 @@
   ```
 
 #### 访问控制
+---
 
 - /etc/openvpn/ccd/handl 以用户名作为文件名生成以下文件
 
@@ -182,6 +183,7 @@ ifconfig-push 10.100.0.65 10.100.0.66
 ```
 
 #### FreeOTP与密码相结合
+---
 
 - 生成授权脚本路径：/etc/openvpn/openvpn-auth-script/auth.py
 
