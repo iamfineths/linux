@@ -97,122 +97,6 @@
   /sbin/iptables -A INPUT -p tcp -s 10.100.0.0/24 -m comment --comment "打开 OpenVPN 网段" -j ACCEPT
   ```
 
-- 启动脚本
-
-  ```
-  #!/bin/bash
-  # chkconfig: 345 20 80
-  # description: openvpn
-  #
-  ########################################################
-  #
-  #    脚本名称: openvpn
-  #
-  #    功    能: 启动、关停 服务
-  #
-  #    用    法: bash openvpn [<stop>|<start>|<restart>]
-  #
-  #    作    者: JerryHan
-  #
-  #    日    期: 2020/06/15
-  #
-  ########################################################
-  #
-  _HELP()
-  {
-      echo
-      grep -w "^#    用    法:" < "$0" | cut -c6-
-      exit 1
-  }
-  _START(){
-      killall -TERM openvpn
-  }
-  _STOP(){
-      openvpn --daemon --config /etc/openvpn/server.conf
-  }
-  case ${1} in
-      "start")
-          _START
-          ;;
-      "stop")
-          _STOP
-          ;;
-      "restart")
-          _STOP
-          sleep 2
-          _START
-          ;;
-      "")
-          _HELP
-          ;;
-      *)
-          { echo "Invalid Parameter" 2>&1;exit 1; }
-          ;;
-  esac
-  # (END)
-  ```
-
-- 服务器配置 /etc/openvpn/server.conf
-
-  ```
-  port 1194
-  proto tcp
-  dev tun
-  tls-server
-  tls-auth /etc/openvpn/easy-rsa-master/easyrsa3/pki/ta.key 0
-  ca /etc/openvpn/easy-rsa-master/easyrsa3/pki/ca.crt
-  dh /etc/openvpn/easy-rsa-master/easyrsa3/pki/dh.pem
-  crl-verify /etc/openvpn/easy-rsa-master/easyrsa3/pki/crl.pem
-  cert /etc/openvpn/easy-rsa-master/easyrsa3/pki/issued/${<server>}.crt
-  key /etc/openvpn/easy-rsa-master/easyrsa3/pki/private/${<server>}.key
-  #ifconfig-pool-persist /etc/openvpn/ipp.txt
-  server 10.100.0.0 255.255.255.0
-  push "route 192.168.${<NET1>}.0 255.255.255.0"
-  push "route 192.168.${<NET2>}.0 255.255.255.0"
-  push "dhcp-option DNS 114.114.114.114"
-  client-config-dir ccd
-  keepalive 10 120
-  comp-lzo
-  max-clients 100
-  persist-key
-  persist-tun
-  status /var/log/openvpn-status.log
-  verb 3
-  
-  #### 需求1 需要的配置 ####
-  client-config-dir /etc/openvpn/ccd
-  
-  #### 需求2 需要的配置 ####
-  verify-client-cert none
-  script-security 2
-  username-as-common-name
-  auth-user-pass-verify "/usr/local/python/bin/python /etc/openvpn/openvpn-auth-script/auth.py" via-file
-  ```
-
-- 客户端配置
-
-  ```
-  client
-  dev tun
-  proto tcp
-  remote ${<IPADDRESS1>} 1194
-  remote ${<IPADDRESS2>} 1194
-  remote-random
-  resolv-retry infinite
-  remote-cert-tls server
-  auth-nocache
-  nobind
-  persist-key
-  persist-tun
-  tls-client
-  tls-auth    "C:/Program Files/OpenVPN/config/100段/ta.key" 1
-  ca          "C:/Program Files/OpenVPN/config/100段/ca.crt"
-  comp-lzo
-  verb 3
-  #### 主要在于区别以下配置 ####
-  auth-user-pass
-  ```
-
 #### 访问控制
 
 - /etc/openvpn/ccd/handl 以用户名作为文件名生成以下文件
@@ -334,17 +218,17 @@ ifconfig-push 10.100.0.65 10.100.0.66
 
   ```
   import pyotp
-  >>> keys ="HanDongLin" 
-  >>> mail ="handl@ewan.cn"
+  >>> keys ="handl" 
+  >>> mail ="handl@handl.cn"
   >>> m = pyotp.totp.TOTP(keys).provisioning_uri(mail)
   >>> print m
-  >>> otpauth://totp/admin%40sinacloud.com?secret=HanDongLin
+  >>> otpauth://totp/admin%40sinacloud.com?secret=handl
   
   #### 根据上面结果生成二维码 扫描进去FreeOTP ####
-  qrencode -o handl.png -t png -s 20 'otpauth://totp/handl%40ewan.cn?secret=HanDongLin'
+  qrencode -o handl.png -t png -s 20 'otpauth://totp/handl%40handl.cn?secret=handl'
   py脚本检验，看看FreeOTP跟服务器生成的是否一致
   >>> import pyotp
-  >>> pyotp.TOTP('HanDongLin').now()
+  >>> pyotp.TOTP('handl').now()
   ```
 
   
