@@ -1,8 +1,11 @@
 - How To Setup System && Serv Quickly?
-- Gateway, include in and out.
-- OpenVPN
+  - Cobbler
+  - ks.cfg
+  - OpenVPN
+  - Gateway, include in and out.
 - K8S
-- MySQL
 - ElasticStack
+- CI/CD
+- MySQ
 - shellScripts
 - Python
