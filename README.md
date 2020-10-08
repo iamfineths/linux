@@ -1,8 +1,8 @@
 - How To Setup System && Serv Quickly?
-- Gateway
-- ElasticStack
-- K8S
+- Gateway, include in and out.
 - OpenVPN
-- shellScripts
+- K8S
 - MySQL
+- ElasticStack
+- shellScripts
 - Python
