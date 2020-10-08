@@ -1,8 +1,8 @@
-- ks.cfg定制ISO一键安装
-- nginx扩展用法
-- ELK日志分析
-- K8S容器
+- How To Setup System && Serv Quickly?
+- Gateway
+- ElasticStack
+- K8S
 - OpenVPN
 - shellScripts
-- MySQL数据库
-- Py
+- MySQL
+- Python
