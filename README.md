@@ -2,10 +2,11 @@
   - Cobbler
   - ks.cfg
   - OpenVPN
-  - Gateway, include in and out.
+  - iptables, nat insider address map outside address.
 - K8S
 - ElasticStack
 - CI/CD
 - MySQ
 - shellScripts
+- Api Gateway
 - Python
