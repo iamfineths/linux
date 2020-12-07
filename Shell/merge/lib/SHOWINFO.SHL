@@ -1,0 +1,90 @@
+#!/bin/bash
+#
+###############################################
+# FILE:         SHOWINFO.SHL 
+# PORPOSE:      打印颜色方案
+# AUTHOR:       handonglin
+# DATE:         2014-08-27
+###############################################
+
+_RED_()
+{
+	echo -e "[\e[31;1m ${1} \e[0m]"
+}
+
+_GREEN_()
+{
+	echo -e "[\e[32;1m ${1} \e[0m]"
+}
+
+_CYAN_()
+{
+	echo -e "[\e[36;1m ${1} \e[0m]"
+}
+
+_LOG_()
+{
+	echo -e "\e[1m$@\e[m"
+}
+
+_LOGFAIL_()
+{
+	if [[ ${1} == "FAIL-WOULD-KILL" ]];then
+		_LOG_ "[ $(date "+%Y-%m-%d %H:%M:%S") ]" $@ $(_RED_ "FAIL")
+		exit 1
+	else
+		_LOG_ "[ $(date "+%Y-%m-%d %H:%M:%S") ]" $@ $(_RED_ "FAIL")
+	fi
+}
+
+_LOGOK_()
+{
+	_LOG_ "[ $(date "+%Y-%m-%d %H:%M:%S") ]" $@ $(_GREEN_ "SUCESSE")
+}
+
+_LOGINFO_()
+{
+	_LOG_ "[ $(date "+%Y-%m-%d %H:%M:%S") ]" $@ $(_CYAN_ "INFO")
+}
+
+_RESULT_()
+{
+        if [[ $? -eq 0 ]];then
+                _LOGOK_ "RESULT" $@
+        else
+                if [[ ${1} == "FAIL-WOULD-KILL" ]];then
+                        _LOGFAIL_ "RESULT" $@
+                        exit 1
+                else
+                        _LOGFAIL_ "RESULT" $@
+                fi
+        fi
+}
+
+_PRINT_HELP_INFO_()
+{
+
+        echo -e "USAGE: ./`basename $0` [-p 平台ID] <区服1> <区服2> <区服...n>
+                -p, -- < 平台ID >
+                    -- <区服...n>" >&2
+        echo "例子：{ `basename $0` -p xxx 1 2 3 ...n }" >&2
+
+}
+
+_PRINT_TITLE_()
+{
+
+	echo "+----------------------------------------------------------+"
+	echo "| 脚本：control.sh - 版本：V1.0 - 功能：中心机远程控制合区 |"
+	echo "+----------------------------------------------------------+"
+
+}
+
+_PRINT_DISPLAY_TITLE_()
+{
+
+        echo "+-------------------------------------------------------+"
+        echo "| 脚本：scanserver.sh - 版本：V1.0 - 功能：合区附属脚本 |"
+        echo "+-------------------------------------------------------+"
+
+}
