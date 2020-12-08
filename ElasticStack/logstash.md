@@ -1,69 +1,15 @@
-[下载链接：https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.tar.gz](https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.tar.gz "下载链接：https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.tar.gz")
+##### 安装部署
 
-    cd /data/softsrc
-    wget -c https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.tar.gz
-    tar zxf logstash-7.7.1.tar.gz -C /usr/local/
-    ln -sf logstash-7.7.1.tar.gz logstash
-
-- ###### 路径：/etc/init.d/logstash;执行命令：chmod u+x /etc/init.d/logstash
-
-
-    #!/bin/bash
-    # chkconfig: 345 20 80
-    # description: logstash
-    #
-    ########################################################
-    #
-    #    脚本名称: logstash.sh
-    #
-    #    功    能: 启动、关停 服务
-    #
-    #    用    法: bash logstash.sh [<stop>|<start>|<restart>]
-    #
-    #    作    者: JerryHan
-    #
-    #    日    期: 2019/08/13
-    #
-    ########################################################
-    #
-    
-    BIN_LOGSTASH="/usr/local/logstash/bin/logstash"
-    CONF_LOGSTASH="/usr/local/logstash/config/logstash.conf"
-    
-    _START(){
-        pgrep -f "${BIN_LOGSTASH}" &>/dev/null || exec nohup ${BIN_LOGSTASH} -f ${CONF_LOGSTASH} --config.reload.automatic &>/dev/null &
-    }
-    
-    _STOP(){
-        jps | grep -i logstash | awk '{print $1}' &>/dev/null && jps | grep -i logstash | awk '{print $1}' | xargs kill -9
-    }
-    
-    case ${1} in
-    
-        "start")
-            _START
-            ;;
-    
-        "stop")
-            _STOP
-            ;;
-    
-        "restart")
-            _STOP
-            sleep 2
-            _START
-            ;;
-    
-        "*"|"")
-            { echo "Invalid Parameter" 2>&1;exit 1; }
-            ;;
-    
-    esac
-    # (END)
-
-- ###### 配置路径：/usr/local/logstash/logstash.conf
-
+```shell
+cd /data/softsrc
+wget -c https://artifacts.elastic.co/downloads/logstash/logstash-7.7.1.tar.gz
+tar zxf logstash-7.7.1.tar.gz -C /usr/local/
+ln -sf logstash-7.7.1.tar.gz logstash
 ```
+
+##### 配置路径：/usr/local/logstash/logstash.conf
+
+```yaml
 input {
     beats { port => "5044" }
 

@@ -1,4 +1,4 @@
-### 安装部署
+##### 安装部署
 ---
 
 ```shell
@@ -9,8 +9,8 @@ cd /usr/local/
 ln -sf filebeat-7.7.1-linux-x86_64 filebeat
 ```
 
-### 组件配置
----
+##### 组件配置
+------
 
 -  filebeat.yml 采用了全局配置与外部配置方式（external configuration files）
 
@@ -38,7 +38,7 @@ output.kafka:
   topic: "{{ TOPIC }}"
 ```
 
-- ###### 数据库配置 MySQL.yml，存放路径：/usr/local/filebeat/inputs.d/MySQL.yml
+- ##### 数据库配置 MySQL.yml，存放路径：/usr/local/filebeat/inputs.d/MySQL.yml
 
 
 ```yaml
@@ -60,7 +60,7 @@ output.kafka:
     project: sdk.mysql
 ```
 
-- ###### Nginx 入口机配置 nginx.yml，存放路径：/usr/local/filebeat/inputs.d/nginx.yml
+- ##### Nginx 入口机配置 nginx.yml，存放路径：/usr/local/filebeat/inputs.d/nginx.yml
 
 
 ```yaml
@@ -79,7 +79,7 @@ output.kafka:
     project: ios.nginx
 ```
 
-- ###### JAVA 工程配置 java.yml，存放路径：/usr/local/filebeat/inputs.d/java.yml
+- ##### JAVA 工程配置 java.yml，存放路径：/usr/local/filebeat/inputs.d/java.yml
 
 
 ```yaml
@@ -100,7 +100,7 @@ output.kafka:
     project: acc.java
 ```
 
-- ###### JAVA 工程配置 java.1.yml，存放路径：/usr/local/filebeat/inputs.d/java.1.yml
+- ##### JAVA 工程配置 java.1.yml，存放路径：/usr/local/filebeat/inputs.d/java.1.yml
 
 
 ```yaml
@@ -118,3 +118,4 @@ output.kafka:
     hostname: {{ HOSTNAME }}
     project: acc.java.1
 ```
+

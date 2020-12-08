@@ -1,0 +1,54 @@
+```shell
+#!/bin/bash
+# chkconfig: 345 20 80
+# description: kibana
+#
+########################################################
+#
+#    脚本名称: kibana.sh
+#
+#    功    能: 启动、关停 服务
+#
+#    用    法: bash kibana.sh [<stop>|<start>|<restart>]
+#
+#    作    者: JerryHan
+#
+#    日    期: 2019/08/13
+#
+########################################################
+#
+
+BIN_KIBANA="/usr/local/kibana/bin"
+CONF_KIBANA="/usr/local/kibana/config/kibana.yml"
+
+_START(){
+    pgrep -f "${BIN_KIBANA}" &>/dev/null || exec nohup ${BIN_KIBANA}/kibana -c ${CONF_KIBANA} --allow-root &>/dev/null &
+}
+
+_STOP(){
+    pgrep -f "${BIN_KIBANA}" &>/dev/null && pgrep -f "${BIN_KIBANA}" | xargs kill -9
+}
+
+case ${1} in
+
+    "start")
+        _START
+        ;;
+
+    "stop")
+        _STOP
+        ;;
+
+    "restart")
+        _STOP
+        sleep 2
+        _START
+        ;;
+
+    "*"|"")
+        { echo "Invalid Parameter" 2>&1;exit 1; }
+        ;;
+
+esac
+# (END)
+```
