@@ -1,4 +1,4 @@
-```shell
+```
 #!/bin/bash
 # chkconfig: 345 20 80
 # description: kibana
@@ -52,3 +52,4 @@ case ${1} in
 esac
 # (END)
 ```
+
