@@ -1,12 +1,12 @@
-- How To Setup System && Serv Quickly?
+- How To Setup System && Services Quickly?
   - Cobbler
   - ks.cfg
   - OpenVPN
   - iptables, nat insider address map outside address.
+  - Api Gateway
 - K8S
 - ElasticStack
 - CI/CD
-- MySQ
-- shellScripts
-- Api Gateway
+- MySQL
+- Shell
 - Python
