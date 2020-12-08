@@ -1,4 +1,5 @@
 ##### 安装部署
+---
 
 ```shell
 cd /data/softsrc
@@ -8,7 +9,7 @@ ln -sf logstash-7.7.1.tar.gz logstash
 ```
 
 ##### 配置路径：/usr/local/logstash/logstash.conf
-
+---
 ```yaml
 input {
     beats { port => "5044" }
