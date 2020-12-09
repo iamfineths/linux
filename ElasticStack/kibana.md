@@ -1,5 +1,5 @@
 ##### 安装部署
----
+***
 ```shell
 cd /data/softsrc/
 wget -c https://artifacts.elastic.co/downloads/kibana/kibana-7.7.1-linux-x86_64.tar.gz
